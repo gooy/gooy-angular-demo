@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery-ui-dialog</title>
+
+    <!--uncomment following line when not using the --inject option for jspm -->
+    <link rel="stylesheet" type="text/css" href="app.bundle.css">
+    <link rel="stylesheet" type="text/css" href="src/app.css">
+    <link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+<body gooy-main>
+
+<div class="container" ng-controller="AppCtrl">
+
+    <div class="jumbotron">
+        <h1>Gooy Angular</h1>
+        <p>
+            ES6 Apps driven by Angular 1.x, inspired by Aurelia.
+        </p>
+    </div>
+
+    <p>
+        Demo for <a href="http://github.com/gooy/gooy-angular">gooy-angular</a> <br/>
+    </p>
+
+    <p>
+        This demo app is 363 kB minified and mangled and 121 kB gzipped. <br/>
+        It includes angular, bootstrap, gooy-angular, core-js, html-template-element, scoped-polyfill, gooy-angular-code, prism and js-beautify.
+    </p>
+
+    <p>
+        Have a look at the <a href="http://github.com/gooy/gooy-angular-demo">Github repository</a> to see the example code for this app.
+    </p>
+
+    <h2>Simple model binding test</h2>
+
+    <p>
+        The input is bound to a model using <code>ng-model</code> and the output is written below using <code ng-non-bindable>{{name}}</code>
+    </p>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="control-label col-md-2"><label for="input-name">Name: </label></div>
+            <div class="col-md-10">
+                <input id="input-name" class="form-control" type="text" ng-model="name"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                {{name}}
+            </div>
+        </div>
+    </form>
+
+    <hr/>
+
+    <h2>Code Component</h2>
+
+    <p>
+        This is an example of the <a href="http://github.com/gooy/gooy-angular-code">Code component</a>. <br/>
+        Use it by adding the <code>ui-code</code> attribute to a pre tag, it Applies syntax highlighting using prism and beautification for html, css and js.
+    </p>
+
+
+    <p>
+      Example usage on <code>pre</code> element without a model binding.
+    </p>
+
+    <pre ui-code class="language-markup" beautify>
+       <template>
+           <div gooy-app class="container" ng-controller="AppCtrl">
+
+               <div class="jumbotron">
+                   <h1>Gooy Application</h1>
+               </div>
+
+               <input type="text" ng-model="name"/>
+               <p>
+                   Name: {{name}}
+               </p>
+           </div>
+       </template>
+    </pre>
+
+    <p>
+        Example using <code>ng-model</code>, the <code>textarea</code> is bound to the same model as the <code>pre</code> element.
+    </p>
+
+    <textarea ng-model="code" class="form-control" rows="5"></textarea>
+
+    <pre ui-code class="language-javascript" beautify ng-model="code"></pre>
+
+    <p>
+        Same example but the model is initialized as <code>null</code> and then transcluded with the <code>pre</code> of the element.
+    </p>
+
+    <textarea ng-model="code2" class="form-control" rows="5"></textarea>
+
+    <pre ui-code class="language-javascript" beautify ng-model="code2">
+      function foo(){
+        console.log("bar");
+      }
+    </pre>
+
+    <hr/>
+
+    <h2>Glyphicon test</h2>
+
+    <p>
+        This test is here to see if the bundled css file correctly points to the font assets.
+    </p>
+
+    <p>
+        Glyphicon test :
+        <i class="glyphicon glyphicon-alert"></i>
+        <i class="glyphicon glyphicon-yen"></i>
+        <i class="glyphicon glyphicon-bed"></i>
+        <i class="glyphicon glyphicon-user"></i>
+        <i class="glyphicon glyphicon-zoom-in"></i>
+    </p>
+
+    <footer class="text-center">&copy; 2015 Gooy</footer>
+
+</div>
+
+<a href="https://github.com/gooy/framework-angular-demo"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+<!--uncomment following line when not using the --inject option for jspm -->
+<script src="app.bundle.js"></script>
+<script>
+    System.baseUrl = "src";
+    System.import("gooy-angular/bootstrapper");
+</script>
+
+<noscript>
+    <div class="nojs-warning">
+        <p>Javascript should be enabled to have a better user experience.</p>
+    </div>
+</noscript>
+<!--[if lt IE 9]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+</body>
+</html>

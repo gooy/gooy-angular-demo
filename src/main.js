@@ -13,6 +13,7 @@ import "bootstrap/css/bootstrap.css!";
 import "github:PrismJS/prism@gh-pages/themes/prism.css!";
 
 //these are here to make sure they are included in the bundling process (temporary solution)
+import "core-js";
 import "gooy-angular";
 import "gooy-angular-code";
 

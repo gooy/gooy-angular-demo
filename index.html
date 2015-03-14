@@ -7,7 +7,7 @@
     <!--uncomment following line when not using the --inject option for jspm -->
     <link rel="stylesheet" type="text/css" href="app.bundle.css">
     <link rel="stylesheet" type="text/css" href="src/app.css">
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico"/>
 
 </head>
 <body gooy-main>
@@ -26,7 +26,7 @@
     </p>
 
     <p>
-        The bundle for this app is 250 kB minified and mangled and 93 kB gzipped. <br/>
+        The bundle for this app is 250 kb minified and mangled (93 kb gzip). <br/>
         It includes angular, gooy-angular, core-js, html-template-element, scoped-polyfill, gooy-angular-code, prism and js-beautify.
     </p>
 
@@ -34,10 +34,130 @@
         Have a look at the <a href="http://github.com/gooy/gooy-angular-demo">Github repository</a> to see the example code for this app.
     </p>
 
+    <h2>What is this ?</h2>
+
+    <p>
+      This is an application bootstrapper for Angular 1.x applications inspired by Aurelia. <br/>
+      It starts the application, imports dependencies and polyfills and then bootstraps Angular. <br/>
+      JSPM is used for dependency management and bundling.
+    </p>
+
+    <p>
+      To bootstrap your application add the `gooy-app` or `gooy-main` attribute on an element. <br/>
+      That will import either the <code>app</code> or the <code>main</code> module located in the src directory. <br/>
+      Custom module id's can be supplied as paramters. ie: <code>gooy-main="myModuleId"</code>
+    </p>
+
+    <p>
+      When using `gooy-app` the module should be an angular controller that will act as the application controller.
+    </p>
+
+    example app.js: <br/>
+    <pre ui-code class="language-javascript" beautify>
+
+      export class AppCtrl {
+        static metadata() {
+          return {
+            id: "AppCtrl",
+            type: 'controller'
+          };
+        }
+
+        static inject() { return ['$scope']; }
+
+        constructor($scope) {
+          this.$scope = $scope;
+
+          $scope.name = "Gooy";
+        }
+
+      }
+    </pre>
+
+    <p>
+      When using `gooy-main` the module should export a configuration function that will configure the framework and bootstrap the application controller.
+    </p>
+
+    example main.js: <br/>
+    <pre ui-code class="language-javascript" beautify>
+      export function configure(gooy) {
+        //register components with the framework
+        gooy
+        .withComponent("gooy-angular-code")
+        ;
+        //start the framework and run the 'app' module on the element that has the `gooy-main` attribute
+        gooy.start().then(a => a.setRoot('app'));
+      }
+    </pre>
+
+    <p>
+      Note that the component is registered as a string.
+      This is the name of the module that holds the component, it will be imported using systemjs and registered with the framework.
+    </p>
+
+  <p>
+    The main difference with normal Angular is that the controllers, directives and services etc are written as ES6 modules and can take advantage of the module loading system provided by ES6 module loader/Systemjs/JSPM.<br/>
+  </p>
+
+  <p>
+    Another difference is that bindings will automatically be watched and a {property}Changed function is called on the component. <br/>
+    A list of other properties to watch can also be provided in the metadata. <br/>
+  </p>
+
+  The example metadata below will register a component as a directive and instruct the framework to setup the bindings for the properties defined in the scope.
+  <code>model: '=ngModel',</code> will make sure `modelChanged` is called whenever `ngModel` is updated
+  <pre ui-code class="language-javascript" beautify>
+      static metadata() {
+        return {
+          id: "uiCode",
+          type: 'directive',
+          restrict: 'A',
+          template: "<code></code>",
+          transclude: true,
+          link: "this.link",
+          require: '?ngModel',
+          scope: {
+            model: '=ngModel',
+            options: '=uiCode'
+          }
+        };
+      }
+    </pre>
+
+  <p>
+    Also note that the link function is specified as a string. <br/>
+    This will be resolved to the link method on the component class when an instance is created.
+  </p>
+
+  <p>
+    An extra list of properties that should be watched can be provided using the `watch` property.
+  </p>
+
+  <pre ui-code class="language-javascript" beautify>
+
+      watch: {
+        'someModelProperty': 'somethingChanged',
+        'someOtherModelProperty': 'somethingElseChanged'
+      }
+
+    </pre>
+
+
+  <p>
+    Have a look at the source code of the <a href="https://github.com/gooy/gooy-angular-code/blob/master/src/code.js">code component</a> for a full example.
+  </p>
+
+  <p>
+    Stay tuned for more features !
+  </p>
+
+  <hr/>
+
     <h2>Simple model binding test</h2>
 
     <p>
-        The input is bound to a model using <code>ng-model</code> and the output is written below using <code ng-non-bindable>{{name}}</code>
+        The input is bound to a model using <code>ng-model</code> and the output is written below using <code
+            ng-non-bindable>{{name}}</code>
     </p>
 
     <form class="form-horizontal">
@@ -99,7 +219,7 @@
     <textarea ng-model="code2" class="form-control" rows="5"></textarea>
 
     <pre ui-code class="language-javascript" beautify ng-model="code2">
-      function foo(){
+      function foo() {
         console.log("bar");
       }
     </pre>
@@ -125,12 +245,15 @@
 
 </div>
 
-<a href="https://github.com/gooy/gooy-angular-demo"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<a href="https://github.com/gooy/gooy-angular-demo"><img style="position: absolute; top: 0; right: 0; border: 0;"
+                                                         src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+                                                         alt="Fork me on GitHub"
+                                                         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
 <script src="jspm_packages/system.js"></script>
 <script src="config.js"></script>
 <!--uncomment following line when not using the --inject option for jspm -->
-<script src="app.bundle.js"></script>
+<!--<script src="app.bundle.js"></script>-->
 <script>
     System.baseUrl = "src";
     System.import("gooy-angular/bootstrapper");
@@ -141,6 +264,7 @@
         <p>Javascript should be enabled to have a better user experience.</p>
     </div>
 </noscript>
-<!--[if lt IE 9]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+<!--[if lt IE 9]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 </body>
 </html>

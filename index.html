@@ -43,7 +43,7 @@
     </p>
 
     <p>
-      To bootstrap the application add the `gooy-app` or `gooy-main` attribute on an element. <br/>
+      To bootstrap the application add the <code>gooy-app</code> or <code>gooy-main</code> attribute on an element. <br/>
       That will import either the <code>app</code> or the <code>main</code> module located in the src directory. <br/>
       Custom module id's can be supplied as attribute values. ie: <code>gooy-main="myModuleId"</code>
     </p>
@@ -75,7 +75,7 @@
     </pre>
 
     <p>
-      When using `gooy-main` the module should export a configuration function that will configure the framework and bootstrap the application controller.
+      When using <code>gooy-main</code> the module should export a configuration function that will configure the framework and bootstrap the application controller.
     </p>
 
     example main.js: <br/>
@@ -104,7 +104,7 @@
   </p>
 
   The example metadata below will register a component as a directive and instruct the framework to setup the bindings for the properties defined in the scope.
-  <code>model: '=ngModel',</code> will make sure `modelChanged` is called whenever `ngModel` is updated
+  <code>model: '=ngModel',</code> will make sure <code>modelChanged</code> is called whenever <code>ngModel</code> is updated
   <pre ui-code class="language-javascript" beautify>
       static metadata() {
         return {
@@ -129,7 +129,7 @@
   </p>
 
   <p>
-    An extra list of properties that should be watched can be provided using the `watch` property.
+    An extra list of properties that should be watched can be provided using the <code>watch</code> property.
   </p>
 
   <pre ui-code class="language-javascript" beautify>

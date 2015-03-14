@@ -39,8 +39,17 @@
     <p>
       This is a bootstrapper for Angular 1.x inspired by Aurelia. <br/>
       It starts the application, imports dependencies, polyfills, components etc ... and then bootstraps Angular. <br/>
-      JSPM is used for dependency management and bundling.
     </p>
+
+    <b>Motivation</b>
+
+    <p>
+      The reason for this experiment is to be able to use ES6 files easily in the browser today using the es6-module-loader and Babel transpiler. <br/>
+      dependency management and bundling is handled by JSPM and registration of components is handled by Gooy. <br/>
+      By doing all this regular Angular code can be written in a more modular manner.
+    </p>
+
+    <h2>Usage</h2>
 
     <p>
       To bootstrap the application add the <code>gooy-app</code> or <code>gooy-main</code> attribute on an element. <br/>

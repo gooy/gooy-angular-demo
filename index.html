@@ -44,9 +44,10 @@
     <b>Motivation</b>
 
     <p>
-      The reason for this experiment is to be able to use ES6 files easily in the browser today using the es6-module-loader and Babel transpiler. <br/>
+      The reason for this experiment is to be able to use ES6 in the browser today using the es6-module-loader and Babel transpiler. <br/>
       dependency management and bundling is handled by JSPM and registration of components is handled by Gooy. <br/>
-      By doing all this regular Angular code can be written in a more modular manner.
+      By doing all this regular Angular code can be written in a more modular manner. <br/>
+
     </p>
 
     <h2>Usage</h2>
@@ -167,10 +168,28 @@
     The <code>angular-ui-router</code> can be used as the router for the SPA.
   </p>
 
-
   <p>
     Stay tuned for more features !
   </p>
+
+  <h2>Use with existing Angular apps</h2>
+
+  <p>
+    Components written with Gooy can be plugged into existing angular apps using the static interface.
+    For this to work systemjs must be included and you need to bootstrap your application manually after components are registered. for example :
+  </p>
+
+  <pre ui-code class="language-javascript" beautify>
+    System.import("gooy-angular").then(function(Gooy){
+      var app = angular.module('demo', []);
+
+      Gooy.registerComponent(app,CodeComponent);
+
+      angular.bootstrap(document, ['demo']);
+    });
+  </pre>
+
+
 
   <hr/>
 

@@ -45,11 +45,11 @@
     <p>
       To bootstrap the application add the `gooy-app` or `gooy-main` attribute on an element. <br/>
       That will import either the <code>app</code> or the <code>main</code> module located in the src directory. <br/>
-      Custom module id's can be supplied as parameters. ie: <code>gooy-main="myModuleId"</code>
+      Custom module id's can be supplied as attribute values. ie: <code>gooy-main="myModuleId"</code>
     </p>
 
     <p>
-      When using `gooy-app` the module should be an angular controller that will act as the application controller.
+      When using <code>gooy-app</code> the module should be an angular controller that will act as the application controller.
     </p>
 
     example app.js: <br/>
@@ -145,6 +145,19 @@
   <p>
     Have a look at the source code of the <a href="https://github.com/gooy/gooy-angular-code/blob/master/src/code.js">code component</a> for a full example.
   </p>
+
+
+  <p>
+    This demo page is setup to be usable with multi page applications, the main css is linked in the head to prevent FOUC. <br/>
+    The elements on this page that need javascript still have FOUC but this can be prevented by hiding the element until it is ready to be displayed. <br/>
+  </p>
+
+  <p>
+    To change it to be a single page application (SPA) remove the style link from the header and let JSPM inject the css using the css plugin. (see example in main.js) <br/>
+    This will bundle all the css using jspm and load the css at runtime. <br/>
+    The <code>angular-ui-router</code> can be used as the router for the SPA.
+  </p>
+
 
   <p>
     Stay tuned for more features !
